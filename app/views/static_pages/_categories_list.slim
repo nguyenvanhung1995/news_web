@@ -1,0 +1,4 @@
+li
+  = link_to category_path(category), class:"cat-#{category.id}" do
+    = category.name
+    span = category.posts.size

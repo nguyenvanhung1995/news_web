@@ -1,0 +1,32 @@
+.col-md-10.col-md-offset-1
+  .card
+    .card-header
+      strong
+        = title
+    .card-body
+        = form_for [:author, post] do |f|
+          = render "shared/error_messages", object: f.object
+          = f.hidden_field :user_id, value: 1
+          = f.hidden_field :public, value: false
+          = f.label :category_id, "Category"
+          = f.select :category_id, Category.pluck(:name, :id), {}, class: "form-control"
+          br
+          = f.label :image
+          = f.file_field :image
+          br
+          = f.label :video
+          = f.file_field :video, accept: "video/mp4, video/avi, video/mov, fvideo/flv, video/wmv"
+          br
+          = f.label :title, "Title"
+          = f.text_field :title, class: "form-control"
+          br
+          = f.label :header, "Header"
+          = f.text_area :header, class: "form-control"
+          br
+          = f.label :tag_list
+          = f.text_field :tag_list, class: "form-control"
+          br
+          = f.label :content_new, "Content"
+          = f.text_area :content_new, class: "ckeditor"
+          br
+          = f.submit button, class: "btn btn-block btn-sm btn-success"

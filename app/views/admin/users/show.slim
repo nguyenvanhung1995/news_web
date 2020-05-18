@@ -1,0 +1,23 @@
+.col-md-12
+  .title style=("text-align: center;")
+    h1 Info user
+  .row
+    .well.well-sm style=("margin: 0 auto; width: 50%")
+      .center
+        h2.text-center= @user.name
+        h4
+          cite
+            i.fas.fa-map-marked-alt &ensp;
+            = @user.address
+        p
+          i.glyphicon.glyphicon-envelope &ensp;
+          = @user.email
+          br/
+          i.glyphicon.glyphicon-gift &ensp;
+          = @user.birthday
+          br/
+          i.fas.fa-user &ensp;
+          = @user.role
+        - if !@user.admin?
+          .edit= link_to "edit",
+            edit_admin_user_path, style: "width: 50%; margin: 0 auto;"

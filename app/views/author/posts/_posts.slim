@@ -1,0 +1,23 @@
+tr
+  td.text-center
+    = post.id
+  td
+    = post.category.name
+  td
+    = post.title
+  td
+    - post.tag_list.each do |tag|
+      | &ensp;&#35;
+      = link_to tag, author_tag_path(tag)
+  td.text-center
+    = post.impressionist_count
+  td.text-center
+    - if post.public
+      strong.text-success
+        i.fas.fa-check
+    - else
+      strong.text-warning
+        i.fas.fa-spinner
+  td.text-center
+    = link_to edit_author_post_path post
+      i.far.fa-edit

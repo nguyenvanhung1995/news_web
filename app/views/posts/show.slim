@@ -1,0 +1,52 @@
+#post-header.page-header style="margin-top: 0px;"
+  - if @post.image.url == "news.jpg"
+    .background-img style=("background-image: url(#{image_url 'news.jpg'});")
+  - else
+    .background-img style=("background-image: url(#{@post.image.url});")
+  .container
+    .row
+      .col-md-10
+        .post-meta
+          = link_to @post.category.name, category_path(@post.category), class: "post-category cat-#{@post.category.id}"
+          span.post-date style="margin-right: 15px;"= @post.updated_at.strftime("%b %d, %Y")
+          strong.post-like
+            = render "post_like", post: @post
+        h1 = @post.title
+.section
+  .container
+    .row
+      .col-md-8
+        .section-row.sticky-container
+          .main-post
+            .post-meta
+              - if @post.video.present?
+                = video_tag @post.video_url.to_s, style: ("width: 665px;"), controls: true
+            .post-content
+              p
+                b = raw @post.header
+              br
+              = raw @post.content
+              br
+              h4
+                | Author :&ensp;
+                = @post.user.name
+              br
+              .aside-widget
+                .tags-widget
+                  .tag style= "width: 50px; float: left; margin-top: -4px;"
+                    h4
+                      | Tags :
+                  .tags
+                    ul style="margin-left: 50px;"
+                      - @post.tag_list.each do |tag|
+                        li
+                          = link_to tag, tag_path(tag)
+              .post-shares.sticky-shares
+                - if user_signed_in?
+                  = render "posts/share_post", post: @post, reaction: reaction_for(@post)
+        #comment-list
+          = render "posts/comments", post: @post, comments: @comments
+      .col-md-4
+        = render "static_pages/featured_posts", post_1: @featured_post_1, post_2: @featured_post_2
+        = render "static_pages/categories"
+        = render "static_pages/tags", tags: @tags

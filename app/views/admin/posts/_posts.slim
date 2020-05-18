@@ -1,0 +1,29 @@
+tr
+  td.text-center
+    = post.id
+  td
+    = post.category.name
+  td
+    = post.title
+  td.text-center
+    = post.impressionist_count
+  td.text-center
+    = link_to admin_post_path post
+      i.fas.fa-info-circle
+  td.text-center
+    - if post.active
+      strong.text-success
+        i.fas.fa-check-square
+    - else
+      .text-danger
+        i.fas.fa-minus-square
+  td.text-center
+    - if post.public
+      strong.text-success style="border: solid; border-radius: 20px; padding: 3px;"
+        | Passed 
+        i.far.fa-edit
+    - else
+      = link_to admin_post_path(post), method: :patch, data: {confirm: "Are you sure?"}
+        strong.text-warning style="border: solid; border-radius: 20px; padding: 3px;"
+          | Update 
+          i.fas.fa-question

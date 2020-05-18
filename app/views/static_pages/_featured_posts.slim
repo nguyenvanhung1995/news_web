@@ -1,0 +1,29 @@
+.aside-widget
+  .section-title
+    h4 Featured Posts
+  .post.post-thumb
+    = link_to post_path(post_1), class: "post-img" do
+      = image_tag(post_1.image.url, alt: "")
+    .post-body
+      .post-meta
+        = link_to category_path(post_1.category), class: "post-category cat-#{post_1.category.id}" do
+          = post_1.category.name
+        span.post-date
+          = post_1.updated_at.strftime("%b %d, %Y ")
+          - if post_1.video.present?
+            i.fas.fa-video
+      h3.post-title
+        = link_to post_1.title, post_path(post_1)
+  .post.post-thumb
+    = link_to post_path(post_2), class: "post-img" do
+      = image_tag(post_2.image.url, alt: "")
+    .post-body
+      .post-meta
+        = link_to category_path(post_2.category), class: "post-category cat-#{post_2.category.id}" do
+          = post_2.category.name
+        span.post-date
+          = post_2.updated_at.strftime("%b %d, %Y ")
+          - if post_2.video.present?
+            i.fas.fa-video
+      h3.post-title
+        = link_to post_2.title, post_path(post_2)

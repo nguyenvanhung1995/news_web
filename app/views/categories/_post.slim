@@ -1,0 +1,10 @@
+.post.post-row style="margin-bottom: 20px;"
+  = link_to post_path(post), class: "post-img" do
+    = image_tag(post.image.url, alt: "")
+  .post-body
+    .post-meta
+      = link_to post.category.name, category_path(post.category), class: "post-category cat-#{post.category.id}"
+      span.post-date
+        = post.updated_at.strftime("%b %d, %Y")
+    h3.post-title
+      = link_to post.title, post_path(post)

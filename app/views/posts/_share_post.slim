@@ -1,0 +1,21 @@
+- if post.reactions.where(user_id: current_user.id).blank?
+  = button_to [post, reaction], params: {reaction: { action: "like" }}, remote: true do
+    i.fas.fa-thumbs-up
+  = button_to [post, reaction], params: {reaction: { action: "dislike" }}, remote: true do
+    i.fas.fa-thumbs-down style="transform: rotateY(180deg);"
+- else
+  - if post.reactions.find_by(user_id: current_user.id).action == nil
+    = button_to [post, reaction], method: :patch, params: {reaction: { action: "like" }}, remote: true do
+      i.fas.fa-thumbs-up
+    = button_to [post, reaction], method: :patch, params: {reaction: { action: "dislike" }}, remote: true do
+      i.fas.fa-thumbs-down style="transform: rotateY(180deg);"
+  - elsif post.reactions.find_by(user_id: current_user.id).action == "like"
+    = button_to [post, reaction], method: :patch, params: {reaction: { action: nil }}, remote: true do
+      i.fas.fa-thumbs-up style="color: #e62e00;"
+    = button_to [post, reaction], method: :patch, params: {reaction: { action: "dislike" }}, remote: true do
+      i.fas.fa-thumbs-down style="transform: rotateY(180deg);"
+  - else
+    = button_to [post, reaction], method: :patch, params: {reaction: { action: "like" }}, remote: true do
+      i.fas.fa-thumbs-up
+    = button_to [post, reaction], method: :patch, params: {reaction: { action: nil }}, remote: true do
+      i.fas.fa-thumbs-down style="color: #3d3d5c; transform: rotateY(180deg);"

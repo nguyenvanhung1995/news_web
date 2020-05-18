@@ -1,0 +1,6 @@
+.section-title
+  = link_to category_path(category), class: "" do
+    h4 = category.name
+  = render "big_post", post: category.posts.where(active: true).last
+  = render partial: "small_posts", collection: category.posts.where(active: true).last(6)[0..4], as: :post
+  .clearfix.visible-md.visible-lg

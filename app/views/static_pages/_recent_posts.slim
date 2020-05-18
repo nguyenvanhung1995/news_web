@@ -1,0 +1,14 @@
+.col-md-3#recent-post
+  .post
+    = link_to post_path(post), class: "post-img" do
+      = image_tag(post.image.url, alt: "")
+    .post-body
+      .post-meta
+        = link_to category_path(post.category), class: "post-category cat-#{post.category.id}" do
+          = post.category.name
+        span.post-date
+          = post.updated_at.strftime("%b %d, %Y ")
+          - if post.video.present?
+            i.fas.fa-video
+      h4.post-title
+        = link_to post.title, post_path(post)

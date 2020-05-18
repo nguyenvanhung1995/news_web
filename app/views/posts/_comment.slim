@@ -1,0 +1,45 @@
+.media
+  .media-left
+    = image_tag comment.user.avatar.url, alt: "", class: "media-object"
+  .media-body
+    .media-heading
+      strong style="padding-right: 15px;"
+        = first_name(comment.user.name)
+      span.time
+        = time_ago_in_words comment.created_at
+        |  ago
+      - if comment.user == current_user || current_user&.admin?
+        = link_to "Reply", "#reply-#{ comment.id }", class: "reply", data: {toggle: "collapse"}, style: "padding-right: 15px;"
+        = link_to "Delete", comment_path(comment), method: :delete, remote: true, class: "reply", style: "padding-right: 15px;"
+      strong class="count-like-#{ comment.id }"
+        - if user_signed_in?
+          = render "posts/comment_like", comment: comment, reaction: reaction_for(comment)
+    p
+    = comment.content
+    - if user_signed_in?
+      .collapse id="reply-#{ comment.id }"
+        = form_for Comment.new, remote: true do |f|
+          = f.hidden_field :parent_id, value: comment.id
+          = f.hidden_field :post_id, value: comment.post.id
+          = f.hidden_field :user_id, value: current_user.id
+          = f.text_area :content, placeholder: "Reply...", class: "form-control"
+          br
+          = f.submit "Reply", class: "btn btn-success btn-sm"
+    - comment.children.each do |comment_child|
+      .media
+        .media-left
+          = image_tag comment_child.user.avatar.url, class: "media-object"
+        .media-body
+          .media-heading
+            strong style="padding-right: 15px;"
+              = first_name(comment_child.user.name)
+            span.time
+              = time_ago_in_words comment_child.created_at
+              |  ago
+            - if comment_child.user == current_user || current_user&.admin?
+              = link_to "Delete", comment_path(comment_child), method: :delete, remote: true, class: "reply", style: "padding-right: 15px;"
+            strong class="count-like-#{ comment_child.id }"
+              - if user_signed_in?
+                = render "posts/comment_like", comment: comment_child, reaction: reaction_for(comment_child)
+          p
+          = comment_child.content

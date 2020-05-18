@@ -1,0 +1,27 @@
+.content
+  .container-login100
+    .wrap-login100
+      .login100-pic.js-tilt data-tilt="" 
+        img alt="IMG" src="https://colorlib.com/etc/lf/Login_v1/images/img-01.png"
+      = form_for(resource, as: resource_name, url: session_path(resource_name), class: "login100-form validate-form") do |f|
+        span.login100-form-title
+          | Member Login
+        .wrap-input100.validate-input data-validate=("Valid email is required: ex@abc.xyz") 
+          = f.email_field :email, class: "input100", placeholder: "Email"
+          span.focus-input100
+          span.symbol-input100
+            i.fa.fa-envelope aria-hidden="true" 
+        .wrap-input100.validate-input data-validate=("Password is required") 
+          = f.password_field :password, autocomplete: "off", class: "input100", placeholder: "Password"
+          span.focus-input100
+          span.symbol-input100
+            i.fa.fa-lock aria-hidden="true"
+        - if devise_mapping.rememberable?
+          = f.check_box :remember_me
+          = f.label :remember_me
+        .container-login100-form-btn
+        = f.submit "Log in", class: "login100-form-btn"
+        .text-center.p-t-136
+          a = link_to root_path, class: "txt2"
+            |     Home page  
+            i.fas.fa-home

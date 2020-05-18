@@ -1,0 +1,27 @@
+.session
+  .container
+    .row style="margin-top: 30px;"
+      - if @post_results.blank?
+        h2.text-center Search results not found !
+        br/
+      -else
+        h2.text-center Search results
+        h4
+          |#{@post_results.total_count} posts were found
+        br/
+        - @post_results.each do |post|
+            .col-md-3.col-sm-4#recent-post
+              .post
+                = link_to post_path(post), style: ("height: 370px;"), class: "post-img" do
+                  = image_tag(post.image.url, alt: "")
+                .post-body
+                  .post-meta
+                    = link_to post_path(post), class: "post-category cat-#{post.category.id}" do
+                      = post.category.name
+                    span.post-date
+                      = post.updated_at.strftime("%b %d, %Y")
+                  h3.post-title
+                    = link_to truncate(post.title, length: 40), post_path(post)
+      .clearfix.visible-md.visible-lg
+      .center style=("margin: 0 auto; width: 50%; margin-right: 480px;")
+        = paginate @post_results, theme: "twitter-bootstrap-3"

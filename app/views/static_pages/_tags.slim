@@ -1,0 +1,7 @@
+.aside-widget
+  .tags-widget
+    ul
+      - tags.each do |tag|
+        - if tag.taggings_count > 0
+          li
+            = link_to tag.name, tag_path(tag.name)

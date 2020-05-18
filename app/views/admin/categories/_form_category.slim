@@ -1,0 +1,15 @@
+.row
+  .col-md-8.col-md-offset- style=("width: 50%; margin: 0 auto;")
+    .card
+      .header style=("text-align: center;")
+        h1.title= title
+      .content style=("margin-left: 10px; margin-right: 10px;")
+        = form_for [:admin, category], class: "card" do |f|
+          = render "shared/error_messages", object: f.object
+          = f.label :name, "Name"
+          = f.text_field :name, class: "form-control"
+          br/
+          = link_to "Back", :back, class: "btn btn-danger btn-sm",
+            style: "margin-left: 10px;"
+          = f.submit button, class: "btn btn-success btn-sm pull-right",
+            style: "margin-right: 10px; margin-bottom: 17px;"

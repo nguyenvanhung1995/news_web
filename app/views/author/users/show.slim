@@ -1,0 +1,20 @@
+.col-md-12
+  .well.well-sm style=("margin: 0 auto; width: 50%")
+    .center
+      h2.text-center= @user.name
+      h4
+        cite
+          i.fas.fa-map-marked-alt
+          = @user.address
+        p
+          i.glyphicon.glyphicon-envelope
+          = @user.email
+          br/
+          i.glyphicon.glyphicon-gift
+          =  @user.birthday
+          br/
+          i.fas.fa-user
+          = @user.role
+        - if current_user == @user
+          .edit= link_to "edit",
+            edit_author_user_path, style: "width: 50%; margin: 0 auto;"

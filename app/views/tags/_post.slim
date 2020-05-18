@@ -1,0 +1,22 @@
+.post.post-row style="margin-bottom: 40px;"
+  = link_to post_path(post), class: "post-img" do
+    = image_tag(post.image.url, alt: "")
+  .post-body
+    .post-meta
+      = link_to post.category.name, category_path(post.category), class: "post-category cat-#{post.category.id}"
+      span.post-date
+        = post.updated_at.strftime("%b %d, %Y")
+    h2.post-title
+      = link_to post.title, post_path(post)
+    h5.post-header
+      = truncate(post.header, length: 100)
+    .aside-widget
+      .tags-widget
+        .tag style= "width: 50px; float: left; margin-top: -4px;"
+            h4
+              | Tags :
+        .tags
+          ul style="margin-left: 50px;"
+            - post.tag_list.each do |tag|
+              li
+                = link_to tag, tag_path(tag)

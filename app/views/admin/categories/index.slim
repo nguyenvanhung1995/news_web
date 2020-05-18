@@ -1,0 +1,29 @@
+.row
+  .col-md-12 style=("margin-top: 50px;")
+    .center style=("text-align: center;") 
+      h1 List Category
+    .header
+      = link_to "New category", new_admin_category_path, class: "btn btn-info btn-sm",
+        style: "margin-bottom: 10px; margin-left: 10px"
+    .content.table-full-width
+      table.table.table-responsive-sm.table-hover.table-outline.mb-0
+        thead.thead-light
+          tr
+            th.text-center ID
+            th Category
+            th.text-center Edit
+            th.text-center Delete
+        tbody
+          - @categories.each do |category|
+            tr
+              td.text-center= category.id
+              td= category.name
+              td.text-center
+                = link_to edit_admin_category_path(category) do
+                  i.fas.fa-tools
+              td.text-center
+                = link_to admin_category_path(category), method: :delete,
+                  data: { confirm: "You are deleting category ! You sure ?" } do
+                  i.far.fa-trash-alt style=("color: red;") 
+      .center style=("text-align: center;") 
+        = paginate @categories, theme: "twitter-bootstrap-3"

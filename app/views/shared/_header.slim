@@ -1,0 +1,41 @@
+body
+  header#header
+    #nav
+      #nav-fixed
+        .container style=("width: auto;")
+          .nav-logo
+            = link_to root_path, class: "logo" do
+              - image_tag "news.png", alt: ""
+          ul.nav-menu.nav.navbar-nav style="margin-left: 15px;"
+            = render partial: "shared/category", collection: categories_list, as: :category
+          .nav-btns
+            = render "posts/form_posts_search"
+            - if user_signed_in?
+              ul.nav.navbar-nav.ml-auto style=("margin-top: -30px; margin-right: 5px; float: right")
+                li.nav-item.dropdown
+                  .dropdown style="float: right;"
+                    button.dropbtn style="display: none;"
+                    | Hi, #{first_name(current_user.name)}
+                    .dropdown-content
+                      = link_to "#" , class: "dropdown-item" do
+                        i.fa.fa-user style="margin-right: 22px; color: #597BAB"
+                        | Profile
+                      = link_to "#", class: "dropdown-item" do
+                        i.fa.fa-wrench style="margin-right: 20px; color: #597BAB"
+                        | Settings
+                      - if current_user.admin?
+                        = link_to admin_posts_path, class: "dropdown-item" do
+                          i.fas.fa-user-shield style="margin-right: 20px; color: #597BAB"
+                          | Admin
+                      - if current_user.author?
+                        = link_to author_posts_path, class: "dropdown-item" do
+                          i.fas.fa-user-edit style="margin-right: 20px; color: #597BAB"
+                          | Article
+                      = link_to destroy_user_session_path, class: "dropdown-item" , method: :delete do
+                        i.fa.fa-lock style="margin-right: 24px; color: #597BAB"
+                        | Logout
+            - else
+              .login style=("margin-top: -29px; margin-right: 20px; float: right")
+                = link_to new_user_session_path do
+                  i.fas.fa-sign-in-alt
+                  |  Login

@@ -1,0 +1,6 @@
+<% if @reactionable.class.name == "Post" %>
+  $(".sticky-shares").html("<%= j render 'posts/share_post', post: @reactionable, reaction: @reaction %>");
+  $(".post-like").html("<%= j render 'posts/post_like', post: @reactionable, reaction: @reaction %>");
+<% else %>
+  $(".count-like-<%= @reactionable.id %>").html("<%= j render 'posts/comment_like', comment: @reactionable, reaction: @reaction %>");
+<% end %>

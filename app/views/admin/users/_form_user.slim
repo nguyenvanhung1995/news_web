@@ -1,0 +1,35 @@
+- provide :title, title
+.content
+  .container-fluid
+    .row
+      .col-md-8.col-md-offset-2
+        .header style=("text-align: center;")
+          h1.title= title
+        .content style=("margin-left: 10px; margin-right: 10px;")
+          = form_for [:admin, user] do |f|
+            = render "shared/error_messages", object: f.object
+            = f.label :name
+            = f.text_field :name, class: "form-control"
+            br/
+            = f.label :birthday
+            = f.date_field :birthday, class: "form-control"
+            br/
+            = f.label :address
+            = f.text_field :address, class: "form-control"
+            br/
+            = f.label :email
+            = f.email_field :email, class: "form-control"
+            br/
+            = f.label :role
+            = f.select :role, ["user", "admin", "author"], {},class: "form-control"
+            - if button=="Create"
+              br/
+              = f.label :password
+              = f.password_field :password, class: "form-control"
+              br/
+              = f.label :password_confirmation
+              = f.password_field :password_confirmation, class: "form-control"
+            br/
+            = link_to "Back", :back, class: "btn btn-danger btn-sm"
+            = f.submit button, class: "btn btn-success btn-sm pull-right"
+            br/
