@@ -1,0 +1,52 @@
+.section
+  .container
+    .row
+      .col-md-6
+        .post.post-thumb
+          = link_to post_path(@featured_post_1), class: "post-img" do
+            = image_tag(@featured_post_1.image.url, alt: "")
+          .post-body
+            .post-meta
+              = link_to category_path(@featured_post_1.category), class: "post-category cat-#{@featured_post_1.category.id}" do
+                = @featured_post_1.category.name
+              span.post-date
+                = @featured_post_1.updated_at.strftime("%b %d, %Y ")
+                - if @featured_post_1.video.present?
+                  i.fas.fa-video
+            h3.post-title
+              = link_to @featured_post_1.title, post_path(@featured_post_1)
+      .col-md-6
+        .post.post-thumb
+          = link_to post_path(@featured_post_2), class: "post-img" do
+            = image_tag(@featured_post_2.image.url, alt: "")
+          .post-body
+            .post-meta
+              = link_to category_path(@featured_post_2.category), class: "post-category cat-#{@featured_post_2.category.id}" do
+                = @featured_post_2.category.name
+              span.post-date
+                = @featured_post_2.updated_at.strftime("%b %d, %Y ")
+                - if @featured_post_2.video.present?
+                  i.fas.fa-video
+            h3.post-title
+              = link_to @featured_post_2.title, post_path(@featured_post_2)
+
+    / Recent posts
+    .row
+      .col-md-12
+        .section-title
+          h3 Recent Posts
+      = render partial: "recent_posts", collection: @recent_posts[0..3], as: :post
+      .clearfix.visible-md.visible-lg
+      = render partial: "recent_posts", collection: @recent_posts[4..8], as: :post
+    .row
+      .col-md-8
+        = render partial: "category_posts", collection: @categories_index, as: :category
+      .col-md-4
+        .aside-widget
+          .section-title
+            h4 Most Read
+        = render partial: "most_read", post_1: @most_read_1, post_2: @most_read_2, post_3: @most_read_3
+        = render "featured_posts", post_1: @featured_post_1, post_2: @featured_post_2
+        = render "advertisement"
+        = render "categories"
+        = render "tags", tags: @tags

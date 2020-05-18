@@ -1,0 +1,23 @@
+  .container-fluid
+    .animated.fadeIn
+      .card
+        .card-header
+          | New content
+          .card-header-actions
+            a.card-header-action
+              small.text-muted Censorship
+        .card-body
+          .scrollspy-example1
+            #spy-example1 data-offset="65" data-spy="scroll" data-target="#navbar-example1" style=("position: relative; height: 500px; overflow: auto; margin-top: .5rem; overflow-y: scroll;") 
+              h2
+                = @post.title
+              small.text-muted
+                i = @post.category.name
+              p
+                = raw @post.content_new
+              h4
+                | Tags :  
+                strong
+                  - @post.tag_list.each do |tags|
+                    | &ensp;&#35;
+                    = tags

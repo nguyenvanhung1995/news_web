@@ -1,0 +1,24 @@
+.section
+  .container
+    .row
+      .col-md-8
+        .section-title style="padding-left: 15px;"
+          .aside-widget
+            .tags-widget
+              .tag style= "width: 50px; float: left; margin-top: -4px;"
+                h4
+                  | Tag :
+              .tags
+                ul style="margin-left: 50px;"
+                  li
+                    = link_to params[:id], tag_path(params[:id])
+          = render partial: "post", collection: @posts[0..@posts.size], as: :post
+        .center style=("text-align: center; width: 50%")
+          = paginate @posts, theme: "twitter-bootstrap-3"
+      .col-md-4
+        = render "static_pages/advertisement"
+        h3 Most read
+        = render partial: "static_pages/most_read"
+        = render "static_pages/featured_posts", post_1: @featured_post_1, post_2: @featured_post_2
+        = render "static_pages/categories"
+        = render "static_pages/tags", tags: @tags

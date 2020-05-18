@@ -1,0 +1,4 @@
+= search_form_for Post.search(params[:q]), as: :q, url: posts_path,
+  method: :get, class: "active-pink-3 active-pink-4 mb-3" do |f|
+  = f.text_field :title_cont, class: "form-control", placeholder:("....Enter Your Search ...."),
+    style: "background-color: #FFF;border-radius: 20px; margin-right: 200px;margin-top: 10px; width: 300px; height: 35px; text-align: center"

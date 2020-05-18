@@ -1,0 +1,6 @@
+$("#recent-post").append("<%= j(render(partial: "post", collection: @posts)) %>");
+<% if @posts.last_page? %>
+  $("#load-more-posts").hide();
+<% else %>
+  $("#load-more-posts").attr("href", "<%= category_path(@category, page: @posts.current_page+1) %>");
+<% end %>

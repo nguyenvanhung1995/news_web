@@ -1,0 +1,8 @@
+| #{ post.reactions.like.size } 
+i.fas.fa-thumbs-up style="color: #e62e00;"
+| &ensp; #{ post.reactions.dislike.size } 
+i.fas.fa-thumbs-down style="color: #3d3d5c;"
+- if post.impressionist_count > 1
+  | &ensp; #{ post.impressionist_count } views
+- else
+  | &ensp; #{ post.impressionist_count } view

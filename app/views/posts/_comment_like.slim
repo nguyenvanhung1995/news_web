@@ -1,0 +1,41 @@
+- if comment.reactions.where(user_id: current_user.id).blank?
+  = button_to [comment, reaction], params: { reaction: { action: "like" }}, remote: true do
+    | #{ comment.reactions.like.size } 
+    i.fas.fa-heart
+  | &ensp; | &ensp;
+
+  = button_to [comment, reaction], params: { reaction: { action: "dislike" }}, remote: true do
+    | #{ comment.reactions.dislike.size } 
+    i.fas.fa-skull
+- else
+  - if comment.reactions.find_by(user_id: current_user.id).action == nil
+    = button_to [comment, reaction], method: :patch, params: { reaction: { action: "like" }}, remote: true do
+      | #{ comment.reactions.like.size } 
+      i.fas.fa-heart
+    | &ensp; | &ensp;
+
+    = button_to [comment, reaction], method: :patch, params: { reaction: { action: "dislike" }}, remote: true do
+      | #{ comment.reactions.dislike.size } 
+      i.fas.fa-skull
+
+  - elsif comment.reactions.find_by(user_id: current_user.id).action == "like"
+
+    = button_to [comment, reaction], method: :patch, params: { reaction: { action: nil }}, remote: true do
+      | #{ comment.reactions.like.size } 
+      i.fas.fa-heart style="color: #D32230;"
+    | &ensp; | &ensp;
+
+    = button_to [comment, reaction], method: :patch, params: { reaction: { action: "dislike" }}, remote: true do
+      | #{ comment.reactions.dislike.size } 
+      i.fas.fa-skull
+
+  - else
+
+    = button_to [comment, reaction], method: :patch, params: { reaction: { action: "like" }}, remote: true do
+      | #{ comment.reactions.like.size } 
+      i.fas.fa-heart
+    | &ensp; | &ensp;
+
+    = button_to [comment, reaction], method: :patch, params: { reaction: { action: nil }}, remote: true do
+      | #{ comment.reactions.dislike.size } 
+      i.fas.fa-skull style="color: #93059D;"

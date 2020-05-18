@@ -1,0 +1,38 @@
+body
+  header.app-header.navbar
+    button.navbar-toggler.sidebar-toggler.d-lg-none.mr-auto data-toggle="sidebar-show" type="button"
+      span.navbar-toggler-icon
+    = link_to root_path, class: "navbar-brand" do
+      = image_tag("/assets/news.png", class: "navbar-brand-full", width: "89", height: "25", alt: "CoreUI Logo")
+    button.navbar-toggler.sidebar-toggler.d-md-down-none data-toggle="sidebar-lg-show" type="button" 
+      span.navbar-toggler-icon
+    ul.nav.navbar-nav.d-md-down-none
+      li.nav-item.px-3
+        = link_to "Dashboard", admin_root_path, class: "nav-link"
+    ul.nav.navbar-nav.ml-auto
+      li.nav-item.dropdown
+        .dropdown style="float: right;"
+          .dropbtn
+            | Hi, #{first_name(current_user.name)}
+            .dropdown-content
+              - if current_user.author?
+                = link_to author_user_path(current_user) , class: "dropdown-item" do
+                  i.fa.fa-user
+                  | Profile
+                = link_to edit_author_user_path(current_user), class: "dropdown-item" do
+                  i.fa.fa-wrench
+                  | Settings
+                .dropdown-divider
+                = link_to destroy_user_session_path, class: "dropdown-item" , method: :delete do
+                  i.fa.fa-lock
+                  | Logout
+              - else
+                = link_to admin_user_path(current_user), class: "dropdown-item" do
+                  i.fa.fa-user
+                  | Profile
+                = link_to edit_admin_user_path(current_user), class: "dropdown-item" do
+                  i.fa.fa-wrench
+                  | Settings
+                = link_to destroy_user_session_path, class: "dropdown-item" , method: :delete do
+                  i.fa.fa-lock
+                  | Logout

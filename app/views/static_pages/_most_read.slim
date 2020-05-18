@@ -1,0 +1,36 @@
+.post.post-widget
+  = link_to post_path(@most_read_1), class: "post-img" do
+    = image_tag(@most_read_1.image.url, alt: "")
+  .post-body
+    h3.post-title
+    - if @most_read_1.video.present?
+      i.fas.fa-video
+      | &ensp;
+    = link_to @most_read_1.title, post_path(@most_read_1)
+.post.post-widget
+  = link_to post_path(@most_read_2), class: "post-img" do
+    = image_tag(@most_read_2.image.url, alt: "")
+  .post-body
+    h3.post-title
+    - if @most_read_2.video.present?
+      i.fas.fa-video
+      | &ensp;
+    = link_to @most_read_2.title, post_path(@most_read_2)
+.post.post-widget
+  = link_to post_path(@most_read_3), class: "post-img" do
+    = image_tag(@most_read_3.image.url, alt: "")
+  .post-body
+    h3.post-title
+    - if @most_read_3.video.present?
+      i.fas.fa-video
+      | &ensp;
+    = link_to @most_read_3.title, post_path(@most_read_3)
+.post.post-widget
+  = link_to post_path(@most_read_4), class: "post-img" do
+    = image_tag(@most_read_4.image.url, alt: "")
+  .post-body
+    h3.post-title
+    - if @most_read_4.video.present?
+      i.fas.fa-video
+      | &ensp;
+    = link_to @most_read_4.title, post_path(@most_read_4)

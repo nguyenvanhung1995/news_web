@@ -1,0 +1,14 @@
+table.table.table-responsive-sm.table-hover.table-outline.mb-0
+  thead.thead-light
+    tr
+      th.text-center #ID
+      th Category
+      th Headline
+      th Tags
+      th.text-center Views
+      th.text-center Status
+      th.text-center Edit
+  tbody
+  = render partial: "posts", collection: @posts, as: :post
+.center style=("text-align: center;")
+  = paginate @posts, theme: "twitter-bootstrap-3"

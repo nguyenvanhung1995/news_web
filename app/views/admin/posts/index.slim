@@ -1,0 +1,12 @@
+table.table.table-responsive-sm.table-hover.table-outline.mb-0
+  thead.thead-light
+    tr
+      th.text-center #ID
+      th Category
+      th Headline
+      th.text-center View
+      th.text-center Show
+      th.text-center Publish
+      th.text-center Status
+  tbody
+  = render partial: "posts", collection: @posts, as: :post

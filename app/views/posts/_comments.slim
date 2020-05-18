@@ -1,0 +1,17 @@
+.section-row style="margin-top: 100px;"
+  - if comments.count != 0
+    .section-title
+      h4 
+        = comments.count
+        |  Comments
+    .post-comments#comments-scroll
+      = render partial: "posts/comment", collection: comments, as: :comment
+.section-row
+  .section-title
+  - if user_signed_in?
+    h4 Leave a reply
+    = render "posts/form", post: post
+  - else
+    p.text-center
+      = link_to "Sign in", user_session_path
+      |  for more feature
