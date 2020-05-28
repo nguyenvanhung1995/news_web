@@ -560,7 +560,6 @@ RESPONSIVE
 }
  .post .post-meta {
      margin-top: 15px;
-     margin-bottom: 15px;
 }
  .post-meta .post-category {
      font-size: 13px;
@@ -699,9 +698,6 @@ RESPONSIVE
 }
  .post.post-row .post-meta {
      margin-top: 0px;
-}
- .post.post-row .post-title {
-     margin-bottom: 15px;
 }
 /*=========================================================
 	POST PAGE

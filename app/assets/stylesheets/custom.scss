@@ -72,6 +72,12 @@ a:hover {
     height: 175px;
   }
 }
+#top-post {
+  .post-img {
+    max-height: 338px;
+    overflow: hidden;
+  }
+}
 
 #big-post {
   .post-title {
@@ -113,6 +119,7 @@ a:hover {
 
   .post-img {
     overflow: hidden;
+    max-height: 425px;
     border-radius: 5px;
   }
 }

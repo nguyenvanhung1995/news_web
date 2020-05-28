@@ -5,7 +5,7 @@
         .row#category-post
           .col-md-12
             .post.post-thumb
-              = link_to post_path(@posts[0]), class: "post-img" do
+              = link_to post_path(@posts[0]), class: "post-img big-img" do
                 = image_tag(@posts[0].image.url, alt: "")
               .post-body
                 .post-meta

@@ -6,8 +6,8 @@
       = link_to post.category.name, category_path(post.category), class: "post-category cat-#{post.category.id}"
       span.post-date
         = post.updated_at.strftime("%b %d, %Y")
-    h2.post-title
-      = link_to post.title, post_path(post)
+    .post-title
+      = link_to post.title, post_path(post), style: "font-size: 20px"
     h5.post-header
       = truncate(post.header, length: 100)
     .aside-widget
